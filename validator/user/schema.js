@@ -5,10 +5,6 @@ const createUserSchema = Joi.object({
   fullName: Joi.string().min(4).required(),
   password: Joi.string().min(8).required(),
   phoneNumber: Joi.string().min(8).required(),
-  kecamatan: Joi.string().required(),
-  kelurahan: Joi.string().required(),
-  kota: Joi.string().required(),
-  provinsi: Joi.string().required(),
 }).unknown();
 
 const loginUserSchema = Joi.object({

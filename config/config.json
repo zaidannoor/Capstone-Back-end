@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "sql6583636",
-    "password": "AqXdFy6iPZ",
-    "database": "sql6583636",
-    "host": "sql6.freesqldatabase.com",
+    "username": "root",
+    "password": null,
+    "database": "tukang_db",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
-    "username": "sql6583636",
-    "password": "AqXdFy6iPZ",
-    "database": "sql6583636",
-    "host": "sql6.freesqldatabase.com",
+    "username": "root",
+    "password": null,
+    "database": "tukang_db",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
-    "username": "sql6583636",
-    "password": "AqXdFy6iPZ",
-    "database": "sql6583636",
-    "host": "sql6.freesqldatabase.com",
+    "username": "root",
+    "password": null,
+    "database": "tukang_db",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   }
 }

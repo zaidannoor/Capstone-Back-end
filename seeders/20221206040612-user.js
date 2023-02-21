@@ -12,12 +12,13 @@ async function generateUser(rowCount) {
         email: faker.internet.email(),
         password: await bcrypt.hash('qwertyuiop',10),
         img: faker.image.avatar(),
-        phoneNumber: faker.phone.number(), // '961-770-7727'
+        phoneNumber: "081295175352",
         kelurahan: 'Tambak Bayan',
         kecamatan: 'Condong Catur',
         kota: "sleman",
         provinsi: "DIY",
-        rating: Math.floor((Math.random() * 5)),
+        priceRate: 100000,
+        rating: 5,
         id_role: 1
     }
     data.push(newUser);
@@ -25,17 +26,15 @@ async function generateUser(rowCount) {
   return data;
 }
 
+
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert("users", generateUser(10));
+    await queryInterface.bulkInsert("users", await generateUser(10));
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    
+    await queryInterface.bulkDelete('users', null, {});
+     
   }
 };

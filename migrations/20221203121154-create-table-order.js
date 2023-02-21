@@ -16,10 +16,6 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      biayaHarian: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
       biayaPembangunan: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -27,6 +23,10 @@ module.exports = {
       estimasiWaktu: {
         type: Sequelize.INTEGER,
         allowNull: false,
+      },
+      image: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       isAccept: {
         type: Sequelize.BOOLEAN,
@@ -38,6 +38,10 @@ module.exports = {
       },
       rating: {
         type: Sequelize.FLOAT,
+        allowNull: true,
+      },
+      review: {
+        type: Sequelize.STRING,
         allowNull: true,
       },
       id_penyewa: {

@@ -47,8 +47,16 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      priceRate: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
+      isWorking: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
+      },
       rating: {
-        type: Sequelize.STRING,
+        type: Sequelize.FLOAT,
         allowNull: true,
       },
       id_role: {

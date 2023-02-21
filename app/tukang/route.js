@@ -1,6 +1,5 @@
 const Express = require("express");
 const authenticationToken = require("../../middleware/authenticationToken");
-const loginPenyewa = require("../../middleware/loginPenyewa");
 const { handlerGetAllTukang, handlerPutStatusOrderByTukang, handlerGetAllOrderTukang, handlerGetOrderTukangById } = require("./handler");
 const router = Express.Router();
 

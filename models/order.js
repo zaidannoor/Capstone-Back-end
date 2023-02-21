@@ -12,10 +12,6 @@ function createModelOrder(Sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false
           },
-          biayaHarian: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-          },
           biayaPembangunan: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -23,6 +19,10 @@ function createModelOrder(Sequelize, DataTypes) {
           estimasiWaktu: {
             type: DataTypes.INTEGER,
             allowNull: false,
+          },
+          image: {
+            type: DataTypes.STRING,
+            allowNull: true,
           },
           isAccept: {
             type: DataTypes.BOOLEAN,
@@ -35,6 +35,10 @@ function createModelOrder(Sequelize, DataTypes) {
           rating: {
             type: DataTypes.FLOAT,
             allowNull: true,
+          },
+          review: {
+            type: DataTypes.STRING,
+            allowNull: false,
           },
           id_penyewa: {
             type: DataTypes.INTEGER,
