@@ -24,16 +24,28 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      biayaHarian: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      biayaTotal: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       image: {
         type: Sequelize.STRING,
-        allowNull: true,
-      },
-      isAccept: {
-        type: Sequelize.BOOLEAN,
-        allowNull: true,
+        allowNull: false,
       },
       status: {
         type: Sequelize.STRING,
+        allowNull: true,
+      },
+      doneByPenyewa: {
+        type: Sequelize.BOOLEAN,
+        allowNull: true,
+      },
+      doneByPekerja: {
+        type: Sequelize.BOOLEAN,
         allowNull: true,
       },
       rating: {
