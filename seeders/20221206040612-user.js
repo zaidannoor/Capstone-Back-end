@@ -18,6 +18,7 @@ async function generateUser(rowCount) {
         kota: "sleman",
         provinsi: "DIY",
         priceRate: 100000,
+        keahlian: 'Perbaikan Rumah',
         rating: 5,
         id_role: 1
     }

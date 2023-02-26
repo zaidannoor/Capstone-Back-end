@@ -1,4 +1,5 @@
 const bcrypt = require("bcrypt");
+const fs = require("fs");
 const {
   validateCreateUserSchema,
   validateLoginUserSchema,
@@ -85,7 +86,6 @@ module.exports = {
         fullName,
         password: hashPassword,
         phoneNumber,
-        img: 'https://www.kindpng.com/picc/m/105-1055656_account-user-profile-avatar-avatar-user-profile-icon.png',
         kecamatan,
         kelurahan,
         kota,
@@ -123,4 +123,27 @@ module.exports = {
       next(error);
     }
   },
+
+  handlerChangeImageUser: async (req, res, next) => {
+    try {
+      console.log(req.user)
+      const id = req.user.id;
+      if (!req.file) {
+        throw new Error("Image is required");
+      }
+      const image = req.file.path;
+      const getUser = await User.findByPk(id);
+      if (getUser.img) {
+        fs.unlink(getUser.img)
+      }
+      getUser.update({img: req.file.path});
+
+      res.status(201).json({
+        status: 'success',
+        message: "Successfully change image User",
+      })
+    } catch (error) {
+      next(error)
+    }
+  }
 };

@@ -32,10 +32,6 @@ function createModelOrder(Sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
           },
-          isAccept: {
-            type: DataTypes.BOOLEAN,
-            allowNull: true,
-          },
           status: {
             type: DataTypes.STRING,
             allowNull: true,

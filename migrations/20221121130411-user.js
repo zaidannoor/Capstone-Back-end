@@ -59,6 +59,10 @@ module.exports = {
         type: Sequelize.FLOAT,
         allowNull: true,
       },
+      keahlian: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       id_role: {
         type: Sequelize.INTEGER,
         allowNull: false,

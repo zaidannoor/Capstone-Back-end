@@ -57,6 +57,10 @@ function createModelUser(Sequelize, DataTypes) {
         type: DataTypes.BOOLEAN,
         allowNull: true,
       },
+      keahlian: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
       id_role: {
         type: DataTypes.INTEGER,
         allowNull: false,

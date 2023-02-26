@@ -14,7 +14,7 @@ module.exports = {
       if (!orderUpdate) {
         throw new Error("Order not found");
       }
-      if (orderUpdate.status != "done") {
+      if (orderUpdate.status != "done by worker") {
         throw new Error("Order is not done yet");
       }
       await orderUpdate.update({
@@ -87,7 +87,7 @@ module.exports = {
   handlerPutRatingOrder: async (req, res, next) => {
     try {
       const { id_order } = req.params;
-      const { rating } = req.body;
+      const { rating, review } = req.body;
       
       const orderUpdate = await Order.findOne({
         where: {
@@ -95,14 +95,17 @@ module.exports = {
           id_penyewa: req.user.id,
         }
       });
+      console.log(id_order)
+      console.log(req.user.id)
       if (!orderUpdate) {
         throw new Error("Order not found");
       }
-      if (orderUpdate.status != "done") {
+      if (orderUpdate.status != "confirmed done") {
         throw new Error("Order is not done yet");
       }
       await orderUpdate.update({
         rating,
+        review
       });
       res.status(201).json({
         status: "success",
