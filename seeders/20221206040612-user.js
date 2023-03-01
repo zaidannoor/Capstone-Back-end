@@ -11,7 +11,6 @@ async function generateUser(rowCount) {
         fullName: faker.name.fullName(),
         email: faker.internet.email(),
         password: await bcrypt.hash('qwertyuiop',10),
-        img: faker.image.avatar(),
         phoneNumber: "081295175352",
         kelurahan: 'Tambak Bayan',
         kecamatan: 'Condong Catur',

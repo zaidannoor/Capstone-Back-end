@@ -6,6 +6,7 @@ const {
 } = require("../../validator/user");
 const { User, Role, Resettoken } = require("../../models");
 const generateAccessToken = require("../../utils/tokenManager");
+const { get } = require("http");
 
 module.exports = {
   handlerLoginUser: async (req, res, next) => {
@@ -126,18 +127,21 @@ module.exports = {
 
   handlerChangeImageUser: async (req, res, next) => {
     try {
-      console.log(req.user)
       const id = req.user.id;
       if (!req.file) {
         throw new Error("Image is required");
       }
-      const image = req.file.path;
-      const getUser = await User.findByPk(id);
-      if (getUser.img) {
-        fs.unlink(getUser.img)
-      }
-      getUser.update({img: req.file.path});
+      const image = req.file;
 
+      const getUser = await User.findByPk(id);
+
+      // if (getUser.img) {
+      //   fs.unlinkSync(getUser.img)
+      // }
+      console.log('/images/'+req.file.filename)
+      
+      getUser.update({img: '/images/'+req.file.filename});
+      
       res.status(201).json({
         status: 'success',
         message: "Successfully change image User",
