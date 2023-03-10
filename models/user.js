@@ -31,19 +31,23 @@ function createModelUser(Sequelize, DataTypes) {
       },
       kecamatan: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       kelurahan: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       kota: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       provinsi: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
+      },
+      address: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
       rating: {
         type: DataTypes.FLOAT,

@@ -49,11 +49,14 @@ module.exports = {
   },
   handlerGetOrderTukangById: async (req, res, next) => {
     try {
+      const id = req.params.id
+
       const order = await Order.findAll({
         where: {
-          id: req.params.id,
-          id_pekerja: req.user.id,
+          id_pekerja: req.params.id,
         },
+        
+
         include: [
           {
             model: User,

@@ -70,6 +70,7 @@ module.exports = {
         kota,
         rating,
         provinsi,
+        address,
         id_role,
       } = req.body;
       validateCreateUserSchema(req.body);
@@ -92,6 +93,7 @@ module.exports = {
         kota,
         provinsi,
         rating,
+        address,
         id_role,
       });
       res.status(200).json({
@@ -138,16 +140,58 @@ module.exports = {
       // if (getUser.img) {
       //   fs.unlinkSync(getUser.img)
       // }
-      console.log('/images/'+req.file.filename)
-      
-      getUser.update({img: '/images/'+req.file.filename});
-      
+      console.log("/images/" + req.file.filename);
+
+      getUser.update({ img: "/images/" + req.file.filename });
+
       res.status(201).json({
-        status: 'success',
+        status: "success",
         message: "Successfully change image User",
-      })
+      });
     } catch (error) {
-      next(error)
+      next(error);
     }
-  }
+  },
+
+  handlerUpdateBiodataUser: async (req, res, next) => {
+    try {
+      const id = req.user.id;
+
+      const {
+        fullName,
+        phoneNumber,
+        address,
+        kelurahan,
+        kecamatan,
+        kota,
+        provinsi,
+      } = req.body;
+
+      const profile = req.body
+      console.log(profile);
+      console.log(fullName);
+      const getUser = await User.findByPk(id);
+
+      if (!getUser) {
+        throw new Error("User not found");
+      }
+
+      await getUser.update({
+        fullName,
+        phoneNumber,
+        address,
+        kelurahan,
+        kecamatan,
+        kota,
+        provinsi
+      })
+
+      res.status(201).json({
+        status: "success",
+        message: "Successfully Update Biodata User",
+      });
+    } catch (error) {
+      next(error);
+    }
+  },
 };

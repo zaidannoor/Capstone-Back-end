@@ -47,6 +47,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      address: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
       priceRate: {
         type: Sequelize.INTEGER,
         allowNull: true,

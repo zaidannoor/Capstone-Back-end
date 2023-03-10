@@ -4,7 +4,8 @@ module.exports = {
   handlerPutStatusDoneOrder: async (req, res, next) => {
     try {
       const { id_order } = req.params;
-      
+      const { status } = req.body
+      console.log(status)
       const orderUpdate = await Order.findOne({
         where: {
           id: id_order,
@@ -18,7 +19,7 @@ module.exports = {
         throw new Error("Order is not done yet");
       }
       await orderUpdate.update({
-        status: 'confirmed done',
+        status: status
       });
       res.status(201).json({
         status: "success",
