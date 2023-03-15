@@ -21,6 +21,15 @@ module.exports = {
       await orderUpdate.update({
         status: status
       });
+
+      // Change status isWorking to false
+      const getUser = await User.findByPk(orderUpdate.id_pekerja);
+
+      await getUser.update({
+        isWorking: false,
+      })
+
+
       res.status(201).json({
         status: "success",
         message: "Successfully update Status",
@@ -76,6 +85,16 @@ module.exports = {
         id_pekerja,
         id_penyewa,
       });
+
+      // Change status isWorking to true
+      const getUser = await User.findByPk(id_pekerja);
+
+      await getUser.update({
+        isWorking: true,
+      })
+
+
+
       res.status(201).json({
         status: "success",
         message: "Successfully post order",
