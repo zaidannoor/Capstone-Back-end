@@ -44,6 +44,10 @@ function createModelOrder(Sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true,
           },
+          imageReview: {
+            type: DataTypes.STRING,
+            allowNull: true,
+          },
           id_penyewa: {
             type: DataTypes.INTEGER,
             allowNull: false,

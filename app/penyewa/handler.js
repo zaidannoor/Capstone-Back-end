@@ -4,13 +4,13 @@ module.exports = {
   handlerPutStatusDoneOrder: async (req, res, next) => {
     try {
       const { id_order } = req.params;
-      const { status } = req.body
-      console.log(status)
+      const { status } = req.body;
+      console.log(status);
       const orderUpdate = await Order.findOne({
         where: {
           id: id_order,
           id_penyewa: req.user.id,
-        }
+        },
       });
       if (!orderUpdate) {
         throw new Error("Order not found");
@@ -19,7 +19,7 @@ module.exports = {
         throw new Error("Order is not done yet");
       }
       await orderUpdate.update({
-        status: status
+        status: status,
       });
 
       // Change status isWorking to false
@@ -27,8 +27,7 @@ module.exports = {
 
       await getUser.update({
         isWorking: false,
-      })
-
+      });
 
       res.status(201).json({
         status: "success",
@@ -38,7 +37,7 @@ module.exports = {
       next(error);
     }
   },
-  
+
   handlerGetAllOrderPenyewa: async (req, res, next) => {
     try {
       const order = await Order.findAll({
@@ -58,14 +57,15 @@ module.exports = {
         message: "Successfully get all Order Penyewa",
         data: order,
       });
-    } catch(error){
-      next (error);
+    } catch (error) {
+      next(error);
     }
   },
   handlerPostOrder: async (req, res, next) => {
     try {
       const { id_pekerja } = req.params;
-      const { biayaHarian, estimasiWaktu, biayaPembangunan, permintaan } = req.body;
+      const { biayaHarian, estimasiWaktu, biayaPembangunan, permintaan } =
+        req.body;
       const img = req.file;
 
       if (!img) {
@@ -73,10 +73,12 @@ module.exports = {
       }
 
       const id_penyewa = req.user.id;
-      const biayaTotal = (parseInt(biayaHarian) * parseInt(estimasiWaktu)) + parseInt(biayaPembangunan)
+      const biayaTotal =
+        parseInt(biayaHarian) * parseInt(estimasiWaktu) +
+        parseInt(biayaPembangunan);
 
       const order = await Order.create({
-        image: '/images/'+img.filename,
+        image: "/images/" + img.filename,
         biayaHarian,
         permintaan,
         biayaPembangunan,
@@ -91,9 +93,7 @@ module.exports = {
 
       await getUser.update({
         isWorking: true,
-      })
-
-
+      });
 
       res.status(201).json({
         status: "success",
@@ -108,25 +108,37 @@ module.exports = {
     try {
       const { id_order } = req.params;
       const { rating, review } = req.body;
+      const img = req.file;
       
       const orderUpdate = await Order.findOne({
         where: {
           id: id_order,
           id_penyewa: req.user.id,
-        }
+        },
       });
-      console.log(id_order)
-      console.log(req.user.id)
+      console.log(id_order);
+      console.log(req.user.id);
       if (!orderUpdate) {
         throw new Error("Order not found");
       }
       if (orderUpdate.status != "confirmed done") {
         throw new Error("Order is not done yet");
       }
-      await orderUpdate.update({
-        rating,
-        review
-      });
+
+      if(!img){
+        await orderUpdate.update({
+          rating,
+          review,
+          imageReview: null,
+        });
+      } else {
+        await orderUpdate.update({
+          rating,
+          review,
+          imageReview: "/images/" + img.filename,
+        });
+      }
+      
       res.status(201).json({
         status: "success",
         message: "Successfully update rating",
@@ -135,7 +147,7 @@ module.exports = {
       next(error);
     }
   },
-  
+
   handlerGetOrderPenyewaById: async (req, res, next) => {
     try {
       const order = await Order.findOne({
@@ -156,10 +168,8 @@ module.exports = {
         message: "Successfully get Order Penyewa by id",
         data: order,
       });
-    } catch(error) {
+    } catch (error) {
       next(error);
     }
-  }
+  },
 };
-
-

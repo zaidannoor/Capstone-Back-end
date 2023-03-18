@@ -56,6 +56,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+      imageReview: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       id_penyewa: {
         type: Sequelize.INTEGER,
         allowNull: false,

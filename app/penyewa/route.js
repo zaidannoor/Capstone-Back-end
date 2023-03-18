@@ -11,7 +11,7 @@ const uploadImage = require("../../utils/multerImage")
 router.get("/order", authenticationToken, handlerGetAllOrderPenyewa);
 router.get("/order/:id", authenticationToken, handlerGetOrderPenyewaById);
 router.post("/order/:id_pekerja", authenticationToken, uploadImage.single("image"), handlerPostOrder);
-router.put("/order/:id_order", authenticationToken, handlerPutRatingOrder);
+router.put("/order/:id_order", authenticationToken, uploadImage.single("image"), handlerPutRatingOrder);
 router.put("/order/done/:id_order", authenticationToken, handlerPutStatusDoneOrder);
 
 module.exports = router;

@@ -55,13 +55,11 @@ module.exports = {
         where: {
           id_pekerja: req.params.id,
         },
-        
-
         include: [
           {
             model: User,
             as: "Penyewa",
-            attributes: ["id", "fullName"],
+            attributes: ["id", "fullName", "img"],
           },
         ],
       });
