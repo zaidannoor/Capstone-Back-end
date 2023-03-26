@@ -165,6 +165,8 @@ module.exports = {
         kecamatan,
         kota,
         provinsi,
+        priceRate,
+        keahlian
       } = req.body;
 
       const profile = req.body
@@ -183,7 +185,9 @@ module.exports = {
         kelurahan,
         kecamatan,
         kota,
-        provinsi
+        provinsi,
+        priceRate,
+        keahlian
       })
 
       res.status(201).json({
