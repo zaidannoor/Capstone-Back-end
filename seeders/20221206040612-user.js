@@ -20,7 +20,9 @@ async function generateUser(rowCount) {
         priceRate: 100000,
         keahlian: 'Perbaikan Rumah',
         rating: 5,
-        id_role: 1
+        id_role: 1,
+        createdAt: new Date(),
+        updatedAt: new Date()
     }
     data.push(newUser);
   }

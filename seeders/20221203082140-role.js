@@ -7,10 +7,14 @@ module.exports = {
       {
         id: 1,
         roleName: "Tukang",
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
       {
         id: 2,
         roleName: "Penyewa",
+        createdAt: new Date(),
+        updatedAt: new Date()
       },
     ]);
   },
