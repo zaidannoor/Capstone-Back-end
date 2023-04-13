@@ -1,3 +1,4 @@
+const { json } = require("sequelize");
 const { User, Role, Order } = require("../../models");
 
 module.exports = {
@@ -109,15 +110,14 @@ module.exports = {
       const { id_order } = req.params;
       const { rating, review } = req.body;
       const img = req.file;
-      
+
       const orderUpdate = await Order.findOne({
         where: {
           id: id_order,
           id_penyewa: req.user.id,
         },
       });
-      console.log(id_order);
-      console.log(req.user.id);
+
       if (!orderUpdate) {
         throw new Error("Order not found");
       }
@@ -125,7 +125,7 @@ module.exports = {
         throw new Error("Order is not done yet");
       }
 
-      if(!img){
+      if (!img) {
         await orderUpdate.update({
           rating,
           review,
@@ -138,7 +138,35 @@ module.exports = {
           imageReview: "/images/" + img.filename,
         });
       }
-      
+
+      const getOrderResponse = await Order.findAll({
+        where: {
+          id_pekerja: orderUpdate.id_pekerja,
+        },
+        attributes: ["rating"],
+      });
+      // console.log(getOrderResponse)
+
+      const getOrder = getOrderResponse.map((item) => item.toJSON())
+      let totalRating = 0;
+      getOrder.forEach(element => {
+        totalRating = totalRating + element.rating
+      });
+      console.log(totalRating)
+      const ratarata = totalRating / getOrder.length
+      console.log(ratarata)
+
+      await User.update(
+        {
+          where: {
+            id: orderUpdate.id_pekerja,
+          }
+        },
+        {
+          rating: ratarata
+        },
+      );
+
       res.status(201).json({
         status: "success",
         message: "Successfully update rating",
