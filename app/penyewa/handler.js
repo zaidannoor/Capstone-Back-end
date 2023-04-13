@@ -147,24 +147,24 @@ module.exports = {
       });
       // console.log(getOrderResponse)
 
-      const getOrder = getOrderResponse.map((item) => item.toJSON())
+      const getOrder = getOrderResponse.map((item) => item.toJSON());
       let totalRating = 0;
-      getOrder.forEach(element => {
-        totalRating = totalRating + element.rating
+      getOrder.forEach((element) => {
+        totalRating = totalRating + element.rating;
       });
-      console.log(totalRating)
-      const ratarata = totalRating / getOrder.length
-      console.log(ratarata)
+      console.log(totalRating);
+      const ratarata = totalRating / getOrder.length;
+      console.log(ratarata);
 
       await User.update(
         {
-          where: {
-            id: orderUpdate.id_pekerja,
-          }
+          rating: ratarata,
         },
         {
-          rating: ratarata
-        },
+          where: {
+            id: orderUpdate.id_pekerja,
+          },
+        }
       );
 
       res.status(201).json({
