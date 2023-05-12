@@ -7,6 +7,7 @@ const {
 const { User, Role, Resettoken } = require("../../models");
 const generateAccessToken = require("../../utils/tokenManager");
 const { get } = require("http");
+const bucket = require("../../utils/googleStorage");
 
 module.exports = {
   handlerLoginUser: async (req, res, next) => {
