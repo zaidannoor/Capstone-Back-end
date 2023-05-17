@@ -1,23 +1,23 @@
 {
   "development": {
     "username": "root",
-    "password": "`m3;s]0)tTX~2h)k",
+    "password": null,
     "database": "tukang_db",
-    "host": "34.101.232.135",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "`m3;s]0)tTX~2h)k",
+    "password": null,
     "database": "tukang_db",
-    "host": "34.101.232.135",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "production": {
     "username": "root",
-    "password": "`m3;s]0)tTX~2h)k",
+    "password": null,
     "database": "tukang_db",
-    "host": "34.101.232.135",
+    "host": "127.0.0.1",
     "dialect": "mysql"
   }
 }
